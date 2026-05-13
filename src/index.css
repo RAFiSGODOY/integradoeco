@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #03484c;
+    --color-primary-hover: #022a2d;
+    --color-secondary: #538a95;
+    --color-foreground: #020202;
+    --color-paper: #ffffff;
+    --color-muted: #667085;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / Edge legado */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-foreground);
+    background-color: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .container-main {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 768px) {
+    .container-main {
+      padding: 0 16px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .container-main {
+      padding: 0 24px;
+    }
+  }
+}
