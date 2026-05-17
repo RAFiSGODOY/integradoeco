@@ -16,8 +16,8 @@ const navLinks = [
 ]
 
 const legalLinks = [
-  { label: 'Privacidade', href: ROUTES.privacy },
-  { label: 'Termos de Uso', href: ROUTES.terms },
+  { label: 'Privacidade', href: "" },
+  { label: 'Termos de Uso', href: ""},
 ]
 
 const columnTitleClass =
