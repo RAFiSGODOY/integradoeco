@@ -29,7 +29,7 @@ export default function Footer() {
   useScrollReveal(footerRef)
 
   return (
-    <footer ref={footerRef} className="overflow-x-hidden bg-paper text-foreground mt-5 sm:mt-0">
+    <footer ref={footerRef} className="overflow-hidden bg-paper text-foreground mt-5 sm:mt-0">
       <div className="container-main px-5  py-10 sm:py-12 lg:py-14">
         <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mb-10 lg:grid-cols-4 lg:gap-8">
           <div

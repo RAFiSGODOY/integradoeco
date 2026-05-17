@@ -1,9 +1,4 @@
-/**
- * Comprime os PNG/JPG originais em src/assets (opcional, rode com npm run assets:compress).
- * Cria backups .bak e substitui por WebP otimizado renomeado — ou mantenha só vite-imagetools no build.
- *
- * Uso recomendado: deixe o build usar vite-imagetools; este script é para reduzir o repo local.
- */
+
 import sharp from 'sharp'
 import { readdir, rename, unlink } from 'fs/promises'
 import path from 'path'
