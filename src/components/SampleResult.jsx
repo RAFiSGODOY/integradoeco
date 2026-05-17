@@ -2,7 +2,8 @@ import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ClipboardList, Gauge, LayoutGrid, Sparkles, ArrowRight } from 'lucide-react'
 
-import resultImage from '../assets/exemplo.png'
+import { resultExample } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 
 const benefits = [
   {
@@ -67,13 +68,11 @@ export default function SampleResult() {
         <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:items-start md:gap-8 lg:gap-10">
           <div data-scroll-reveal="image" className="relative min-w-0">
             <div className="group relative overflow-hidden rounded-xl border border-border bg-surface-muted shadow-card-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/20 hover:shadow-card-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:rounded-2xl lg:rounded-3xl">
-              <img
-                src={resultImage}
+              <OptimizedImage
+                src={resultExample}
                 alt="Exemplo ilustrativo de relatório com score e pilares ESG"
-                className="aspect-[4/3] h-auto w-full max-h-[180px] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[260px] lg:max-h-[340px] xl:max-h-[380px]"
-                loading="lazy"
-                decoding="async"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                className="aspect-[4/3] h-auto w-full max-h-[180px] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[260px] lg:max-h-[340px] xl:max-h-[380px]"
               />
               <div
                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"

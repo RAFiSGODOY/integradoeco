@@ -6,8 +6,8 @@ import {
   useState,
 } from 'react'
 import { Menu, X } from 'lucide-react'
-import logoOnHero from '../assets/6.png'
-import logoAfterHero from '../assets/4.png'
+import { logoNavHero, logoNavLight } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -32,7 +32,7 @@ const navbarThemes = {
       'border border-paper/55 bg-white text-primary hover:bg-white/90 hover:border-paper',
     navBtnIconClass:
       'border border-paper/55 bg-white text-primary hover:bg-white/90',
-    logoSrc: logoOnHero,
+    logoSrc: logoNavHero,
     link: {
       idle: 'text-paper/85',
       hoverLine: 'text-paper',
@@ -46,7 +46,7 @@ const navbarThemes = {
       'border border-muted/40 bg-primary text-paper hover:border-primary/45 hover:bg-primary/90',
     navBtnIconClass:
       'border border-muted/40 bg-primary text-paper hover:bg-primary/90',
-    logoSrc: logoAfterHero,
+    logoSrc: logoNavLight,
     link: {
       idle: 'text-muted',
       hoverLine: 'text-primary',
@@ -62,7 +62,7 @@ const navbarThemes = {
       'border border-paper/55 bg-white text-primary hover:bg-white/90 hover:border-paper',
     navBtnIconClass:
       'border border-paper/55 bg-white text-primary hover:bg-white/90',
-    logoSrc: logoOnHero,
+    logoSrc: logoNavHero,
     link: {
       idle: 'text-paper/85',
       hoverLine: 'text-paper',
@@ -192,9 +192,10 @@ export default function Navbar() {
               className="hero-animate-nav hero-delay-1 flex min-w-0 shrink-0 items-center"
               onClick={closeMenu}
             >
-              <img
+              <OptimizedImage
                 src={logoSrc}
                 alt="Somos Sustentáveis"
+                priority
                 className="h-7 w-auto max-w-[120px] object-contain object-left transition-opacity duration-300 sm:h-8 sm:max-w-[140px]"
               />
             </a>

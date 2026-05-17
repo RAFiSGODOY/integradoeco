@@ -1,9 +1,7 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import prata from '../assets/nivelprata.png'
-import logo from '../assets/1.png'
-import bronze from '../assets/nivelbronze.png'
-import ouro from '../assets/nivelouro.png'
+import { logoMain, sealBronze, sealPrata, sealOuro } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 import { ROUTES } from '../constants/routes'
 
 const navLinks = [
@@ -39,7 +37,7 @@ export default function Footer() {
             className="flex min-w-0 flex-col items-center text-center sm:col-span-2 sm:items-start sm:text-left lg:col-span-2"
           >
             <a href="#inicio" className="mb-3 inline-flex items-center gap-2 sm:mb-3.5">
-              <img src={logo} alt="Logo Somos Sustentáveis" className="h-10 w-auto sm:h-11 lg:h-12" />
+              <OptimizedImage src={logoMain} alt="Logo Somos Sustentáveis" className="h-10 w-auto sm:h-11 lg:h-12" />
             </a>
             <p className="max-w-sm text-pretty text-xs leading-snug text-tertiary sm:max-w-[320px] sm:text-sm sm:leading-relaxed">
               Plataforma de avaliação e diagnóstico ESG para instituições que buscam desempenho,
@@ -94,22 +92,22 @@ export default function Footer() {
             <p className={`${columnTitleClass} mb-2.5 sm:mb-3`}>Score ESG</p>
             <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start sm:gap-2.5">
               <a href="#metodologia-estruturada" className="shrink-0">
-                <img
-                  src={bronze}
+                <OptimizedImage
+                  src={sealBronze}
                   alt="Nível Bronze"
                   className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
                 />
               </a>
               <a href="#metodologia-estruturada" className="shrink-0">
-                <img
-                  src={prata}
+                <OptimizedImage
+                  src={sealPrata}
                   alt="Nível Prata"
                   className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
                 />
               </a>
               <a href="#metodologia-estruturada" className="shrink-0">
-                <img
-                  src={ouro}
+                <OptimizedImage
+                  src={sealOuro}
                   alt="Nível Ouro"
                   className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
                 />

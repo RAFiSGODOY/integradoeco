@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { CONTACT_EMAIL } from '../constants/cta'
-import background from '../assets/avaliacao.png'
+import { ctaBackground } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 
 export default function FinalCTA() {
   const sectionRef = useRef(null)
@@ -13,10 +14,10 @@ export default function FinalCTA() {
       id="finalcta"
       className="relative overflow-hidden bg-primary px-5 py-12 font-inter scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.5rem+0.75rem)] sm:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] sm:py-14 md:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] md:py-16 lg:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4rem+1rem)] lg:py-32 xl:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4.25rem+1rem)] xl:py-26"
     >
-      <img
-        src={background}
+      <OptimizedImage
+        src={ctaBackground}
         alt=""
-        decoding="async"
+        sizes="100vw"
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[60%_center] opacity-[0.45] sm:object-[55%_center] lg:object-[60%_center]"
       />
 

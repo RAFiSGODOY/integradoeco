@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/4.png'
+import { logoNavLight } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 import { CONTACT_EMAIL } from '../constants/cta'
 import { ROUTES } from '../constants/routes'
 
@@ -36,9 +37,10 @@ export default function LegalPageLayout({ title, description, children }) {
       <header className="border-b border-border bg-white px-5 py-4  top-0 left-0 right-0 z-50">
         <div className="container-main flex items-center justify-between gap-4">
           <Link to={ROUTES.home} className="inline-flex shrink-0 items-center">
-            <img
-              src={logo}
+            <OptimizedImage
+              src={logoNavLight}
               alt="Somos Sustentáveis"
+              priority
               className="h-9 w-auto object-contain sm:h-10"
             />
           </Link>

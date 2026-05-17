@@ -1,4 +1,5 @@
-import background from '../assets/background.png'
+import { heroBackground } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 import { ArrowRight } from 'lucide-react'
 
 export default function Hero() {
@@ -8,10 +9,11 @@ export default function Hero() {
       className="relative flex w-full px-5 isolate min-h-screen scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4rem+0.75rem)] overflow-hidden bg-black sm:min-h-[100vh] sm:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4rem+1rem)] md:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4.5rem+1rem)] lg:h-[100vh] lg:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4.75rem+1rem)]"
     >
       
-      <img
-        src={background}
+      <OptimizedImage
+        src={heroBackground}
         alt=""
-        decoding="async"
+        priority
+        sizes="100vw"
         className="hero-animate-bg pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[60%_center] sm:object-[55%_center] lg:object-[60%_center]"
       />
 

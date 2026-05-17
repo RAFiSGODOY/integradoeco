@@ -1,8 +1,7 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import ambiental from '../assets/ambiental.png'
-import social from '../assets/social.png'
-import governance from '../assets/governanca.png'
+import { pillarAmbiental, pillarSocial, pillarGovernanca } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 
 const pillars = [
   {
@@ -10,7 +9,7 @@ const pillars = [
     number: '01',
     label: 'Ambiental',
     labelEn: 'Environmental',
-    imageSrc: ambiental,
+    imageSrc: pillarAmbiental,
     description:
       'Gestão de recursos naturais, eficiência energética, resíduos e emissões nas operações da instituição.',
     tags: ['Energia', 'Resíduos', 'Emissões', 'Recursos'],
@@ -20,7 +19,7 @@ const pillars = [
     number: '02',
     label: 'Social',
     labelEn: 'Social',
-    imageSrc: social,
+    imageSrc: pillarSocial,
     description:
       'Políticas internas, diversidade, bem-estar e relacionamento com equipes, parceiros e comunidade.',
     tags: ['Diversidade', 'Saúde', 'Comunidade', 'Trabalho'],
@@ -30,7 +29,7 @@ const pillars = [
     number: '03',
     label: 'Governança',
     labelEn: 'Governance',
-    imageSrc: governance,
+    imageSrc: pillarGovernanca,
     description:
       'Transparência, ética, conformidade, gestão de riscos e estrutura de tomada de decisão.',
     tags: ['Ética', 'Compliance', 'Riscos', 'Transparência'],
@@ -40,13 +39,11 @@ const pillars = [
 function PillarImage({ pillar }) {
   return (
     <div className="group relative w-full overflow-hidden rounded-xl border border-border bg-surface-muted shadow-card-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/20 hover:shadow-card-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:rounded-2xl lg:rounded-3xl">
-      <img
+      <OptimizedImage
         src={pillar.imageSrc}
         alt={`Ilustração do pilar ${pillar.label} (${pillar.labelEn}) na avaliação ESG.`}
-        className="aspect-[4/3] h-auto max-h-[180px] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[240px] lg:max-h-[260px] xl:max-h-[380px]"
-        loading="lazy"
-        decoding="async"
         sizes="(max-width: 1024px) 100vw, 50vw"
+        className="aspect-[4/3] h-auto max-h-[180px] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[240px] lg:max-h-[260px] xl:max-h-[380px]"
       />
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"

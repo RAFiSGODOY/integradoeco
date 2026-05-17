@@ -2,9 +2,8 @@ import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ArrowRight } from 'lucide-react'
 
-import nivelbronze from '../assets/nivelbronze.png'
-import nivelprata from '../assets/nivelprata.png'
-import nivelouro from '../assets/nivelouro.png'
+import { sealBronze, sealPrata, sealOuro } from '../assets/images'
+import OptimizedImage from './OptimizedImage'
 
 const levels = [
   {
@@ -14,7 +13,7 @@ const levels = [
     label: 'Iniciante',
     description:
       'Primeiras práticas ESG com lacunas a evoluir. O selo orienta prioridades.',
-    seal: nivelbronze,
+    seal: sealBronze,
     sealAlt: 'Selo ESG nível Bronze',
     badgeClass: 'bg-[#B87333]/12 text-[#8B5A2B] border-[#B87333]/25',
   },
@@ -25,7 +24,7 @@ const levels = [
     label: 'Intermediário',
     description:
       'Práticas estruturadas em boa parte dos pilares. Maturidade em construção.',
-    seal: nivelprata,
+    seal: sealPrata,
     sealAlt: 'Selo ESG nível Prata',
     badgeClass: 'bg-[#8A9BA8]/15 text-[#4A5F6E] border-[#8A9BA8]/30',
   },
@@ -36,7 +35,7 @@ const levels = [
     label: 'Avançado',
     description:
       'Alto nível de maturidade, com práticas integradas à estratégia institucional.',
-    seal: nivelouro,
+    seal: sealOuro,
     sealAlt: 'Selo ESG nível Ouro',
     badgeClass: 'bg-[#C9A227]/15 text-[#7A6520] border-[#C9A227]/30',
   },
@@ -82,12 +81,10 @@ function SealCard({ level }) {
       className="group relative flex min-w-0 flex-col items-center overflow-hidden rounded-xl border border-border bg-white p-3 text-center shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/20 hover:shadow-card-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-4"
     >
       <div className="flex h-14 w-14 shrink-0 items-center justify-center sm:h-16 sm:w-16">
-        <img
+        <OptimizedImage
           src={level.seal}
           alt={level.sealAlt}
           className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-          loading="lazy"
-          decoding="async"
         />
       </div>
 

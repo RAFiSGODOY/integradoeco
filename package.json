@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "assets:compress": "node scripts/compress-assets.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
@@ -27,7 +28,9 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "postcss": "^8.5.14",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vite-imagetools": "^10.0.0"
   }
 }
