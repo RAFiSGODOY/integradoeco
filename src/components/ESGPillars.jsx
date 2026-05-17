@@ -1,222 +1,152 @@
-import {
-  Leaf,
-  Users,
-  ShieldCheck,
-  CheckCircle2,
-  BarChart3,
-} from 'lucide-react'
-
+import { useRef } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import ambiental from '../assets/ambiental.png'
 import social from '../assets/social.png'
 import governance from '../assets/governanca.png'
 
-
 const pillars = [
   {
     id: 'environmental',
+    number: '01',
     label: 'Ambiental',
     labelEn: 'Environmental',
-    letter: 'E',
-    Icon: Leaf,
     imageSrc: ambiental,
     description:
-      'Avalia como a instituição gerencia seus recursos naturais, adota práticas de eficiência energética, controla a geração de resíduos, monitora emissões e reduz impactos ambientais em suas operações. Esse pilar permite identificar oportunidades de melhoria no uso de recursos, na sustentabilidade dos processos e na responsabilidade ambiental da organização.',
-    criteria: [
-      'Gestão de energia',
-      'Controle de emissões',
-      'Uso consciente de recursos',
-      'Gestão de resíduos',
-    ],
+      'Gestão de recursos naturais, eficiência energética, resíduos e emissões nas operações da instituição.',
     tags: ['Energia', 'Resíduos', 'Emissões', 'Recursos'],
-    metric: '4 áreas analisadas',
-    metricHint: 'Critérios objetivos',
   },
   {
     id: 'social',
+    number: '02',
     label: 'Social',
     labelEn: 'Social',
-    letter: 'S',
-    Icon: Users,
     imageSrc: social,
     description:
-      'Analisa as políticas internas da instituição, suas práticas de diversidade e inclusão, o cuidado com o bem-estar dos colaboradores e a qualidade do relacionamento com equipes, parceiros e comunidade. Esse pilar ajuda a compreender o impacto social da organização e identificar oportunidades para fortalecer uma cultura mais justa, segura e responsável.',
-    criteria: [
-      'Diversidade e inclusão',
-      'Saúde e segurança',
-      'Relacionamento com a comunidade',
-      'Práticas trabalhistas',
-    ],
+      'Políticas internas, diversidade, bem-estar e relacionamento com equipes, parceiros e comunidade.',
     tags: ['Diversidade', 'Saúde', 'Comunidade', 'Trabalho'],
-    metric: '4 dimensões sociais',
-    metricHint: 'Indicadores padronizados',
   },
   {
     id: 'governance',
+    number: '03',
     label: 'Governança',
     labelEn: 'Governance',
-    letter: 'G',
-    Icon: ShieldCheck,
     imageSrc: governance,
     description:
-      'Considera o nível de transparência da instituição, suas práticas éticas, conformidade com normas, estrutura de gestão, processos de tomada de decisão e prestação de contas. Esse pilar ajuda a avaliar a maturidade corporativa da organização e identificar oportunidades para fortalecer a confiança, a responsabilidade e a governança institucional.',
-    criteria: [
-      'Ética e transparência',
-      'Conformidade',
-      'Gestão de riscos',
-      'Estrutura corporativa',
-    ],
+      'Transparência, ética, conformidade, gestão de riscos e estrutura de tomada de decisão.',
     tags: ['Ética', 'Compliance', 'Riscos', 'Transparência'],
-    metric: '4 eixos de governança',
-    metricHint: 'Maturidade institucional',
   },
 ]
 
-function PillarImageSlot({ pillar }) {
-  const Icon = pillar.Icon
-
-  if (pillar.imageSrc) {
-    return (
-      <div
-        className="relative w-full overflow-hidden rounded-2xl "
-
-      >
-        <img src={pillar.imageSrc} alt="" className="aspect-[4/3] h-full w-full object-cover lg:aspect-[5/4]" />
-      </div>
-    )
-  }
-
+function PillarImage({ pillar }) {
   return (
-    <div
-      className="relative flex aspect-[4/3] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed bg-paper lg:aspect-[5/4]"
-
-    >
-      <Icon className="mb-2 opacity-[0.15]" size={40} strokeWidth={1.25} aria-hidden />
-      <span className="text-[12px] font-medium" >
-        Imagem — {pillar.label}
-      </span>
+    <div className="group relative w-full overflow-hidden rounded-xl border border-border bg-surface-muted shadow-card-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/20 hover:shadow-card-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:rounded-2xl lg:rounded-3xl">
+      <img
+        src={pillar.imageSrc}
+        alt={`Ilustração do pilar ${pillar.label} (${pillar.labelEn}) na avaliação ESG.`}
+        className="aspect-[4/3] h-auto max-h-[180px] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[240px] lg:max-h-[260px] xl:max-h-[380px]"
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 1024px) 100vw, 50vw"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"
+        aria-hidden
+      />
     </div>
   )
 }
 
-function PillarTextBlock({ pillar }) {
-  const Icon = pillar.Icon
-
+function PillarContent({ pillar }) {
   return (
-    <div className="relative">
-      <span
-        className="pointer-events-none absolute -right-2 -top-6 select-none font-bold leading-none sm:-top-8 lg:-right-4"
-        style={{
-          fontSize: 'clamp(5rem, 14vw, 8rem)',
-          color: 'rgba(0, 86, 95, 0.06)',
-        }}
-        aria-hidden
+    <div className="flex min-w-0 flex-col items-center justify-center lg:items-start lg:justify-start text-center lg:text-left">
+      <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-secondary sm:text-[10px]">
+        Pilar {pillar.number} · {pillar.labelEn}
+      </p>
+      <h3
+        id={`pillar-title-${pillar.id}`}
+        className="mt-1 text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl"
       >
-        {pillar.letter}
-      </span>
-
-      <div className="relative z-[1]">
-        <div className="mb-4 flex items-center gap-3">
-
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-secondary" >
-              {pillar.labelEn}
-            </p>
-            <h3 id={`pillar-title-${pillar.id}`} className="text-2xl font-bold tracking-tight sm:text-3xl text-primary" >
-              {pillar.label}
-            </h3>
-          </div>
-        </div>
-
-        <p className="mb-6 text-[15px] leading-relaxed text-muted" >
-          {pillar.description}
-        </p>
-
-        <div className="mb-6">
-          <p className="mb-2 text-[12px] font-semibold uppercase tracking-wider" >
-            Critérios avaliados
-          </p>
-          <ul className="space-y-2">
-            {pillar.criteria.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <CheckCircle2
-                  className="mt-0.5 shrink-0"
-                  size={17}
-                  strokeWidth={2}
-                  color="var(--color-secondary)"
-                  aria-hidden
-                />
-                <span className="text-[14px] font-medium leading-snug text-muted" >
-                  {item}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mb-6 flex flex-wrap gap-2">
-          {pillar.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-lg  px-2.5 py-1 text-[12px] font-medium"
-              style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-paper)' }}
-            >
+        {pillar.label}
+      </h3>
+      <p className="mt-2 max-w-lg text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed">
+        {pillar.description}
+      </p>
+      <ul className="mt-3 flex flex-wrap justify-center gap-1.5 sm:mt-4 sm:gap-2 lg:justify-start">
+        {pillar.tags.map((tag) => (
+          <li key={tag}>
+            <span className="inline-block rounded-md bg-secondary/90 px-2 py-0.5 text-[9px] font-medium text-paper sm:px-2.5 sm:py-1 sm:text-[10px]">
               {tag}
             </span>
-          ))}
-        </div>
-
-
-      </div>
+          </li>
+        ))}
+      </ul>
     </div>
+  )
+}
+
+function PillarRow({ pillar, reverse }) {
+  return (
+    <article
+      className="grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12"
+      aria-labelledby={`pillar-title-${pillar.id}`}
+    >
+      <div
+        data-scroll-reveal="image"
+        className={reverse ? 'lg:order-2' : undefined}
+      >
+        <PillarImage pillar={pillar} />
+      </div>
+      <div
+        data-scroll-reveal="text"
+        className={reverse ? 'lg:order-1' : undefined}
+      >
+        <PillarContent pillar={pillar} />
+      </div>
+    </article>
   )
 }
 
 export default function ESGPillars() {
-  return (
-    <section id="pilares" className="font-inter py-24 md:py-28 lg:py-32 bg-white" >
-      <div className="container-main mx-auto max-w-[1200px]">
-        <header className="mx-auto max-w-3xl text-center md:mb-20">
-          <div className="mb-5 inline-flex items-center border-b-2 border-secondary px-2 py-1">
-            <span className="text-sm font-semibold tracking-wide text-secondary">
-              Metodologia
-            </span>
-          </div>
-          <h2
-            className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-[40px] lg:leading-[1.15]"
+  const sectionRef = useRef(null)
+  useScrollReveal(sectionRef)
 
+  return (
+    <section
+      ref={sectionRef}
+      id="pilares"
+      className="relative overflow-x-hidden bg-[#F9FAFB] px-5 py-10 font-inter scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.5rem+0.75rem)] sm:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] sm:py-14 md:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] md:py-16 lg:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4rem+1rem)] lg:py-22 xl:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4.25rem+1rem)] xl:py-26"
+    >
+      <div className="container-main">
+        <header className="flex flex-col gap-2 sm:gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+          <div className="min-w-0 text-center items-center justify-center lg:items-start lg:justify-start lg:max-w-md lg:text-left">
+            <div
+              data-scroll-reveal="text"
+              className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
+            >
+              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
+                Pilares ESG
+              </span>
+            </div>
+            <h2
+              data-scroll-reveal="text"
+              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+            >
+              O que medimos em cada pilar
+            </h2>
+          </div>
+
+          <p
+            data-scroll-reveal="text"
+            className="min-w-0 text-center text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-sm lg:pb-0.5 lg:text-left"
           >
-            Avaliação baseada nos pilares ESG
-          </h2>
-          <p className="text-base leading-relaxed md:text-lg text-muted" >
-            A metodologia organiza a avaliação em três dimensões essenciais para transformar práticas institucionais em
-            indicadores claros, auditáveis e comparáveis.
+            Critérios objetivos e padronizados para uma avaliação consistente e transparente.
           </p>
         </header>
 
-        <div className="flex flex-col gap-16 md:gap-20 lg:gap-24 mt-36">
-          {pillars.map((pillar, index) => {
-            const imageLeft = index % 2 === 0
-
-            return (
-              <article
-                key={pillar.id}
-                className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12"
-                aria-labelledby={`pillar-title-${pillar.id}`}
-              >
-                {imageLeft ? (
-                  <>
-                    <PillarImageSlot pillar={pillar} />
-                    <PillarTextBlock pillar={pillar} />
-                  </>
-                ) : (
-                  <>
-                    <PillarTextBlock pillar={pillar} />
-                    <PillarImageSlot pillar={pillar} />
-                  </>
-                )}
-              </article>
-            )
-          })}
+        <div className="mt-8 flex flex-col gap-10 sm:mt-10 sm:gap-12 lg:mt-12 lg:gap-14 xl:gap-16">
+          {pillars.map((pillar, index) => (
+            <PillarRow key={pillar.id} pillar={pillar} reverse={index % 2 === 1} />
+          ))}
         </div>
       </div>
     </section>

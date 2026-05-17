@@ -56,9 +56,19 @@ export default {
         'nav-cta-border': {
           to: { transform: 'rotate(360deg)' },
         },
+        'marquee-left': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-right': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
       },
       animation: {
         'nav-cta-border': 'nav-cta-border 2.4s linear infinite',
+        'marquee-left': 'marquee-left 42s linear infinite',
+        'marquee-right': 'marquee-right 42s linear infinite',
       },
     },
   },

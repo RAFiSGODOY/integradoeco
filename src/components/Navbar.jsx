@@ -1,40 +1,89 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
-/** Logo sobre o hero — ajuste o ficheiro se necessário */
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
+import { Menu, X } from 'lucide-react'
 import logoOnHero from '../assets/6.png'
-/** Logo com a barra já fora do hero — troque por versão para fundo claro/escuro */
 import logoAfterHero from '../assets/4.png'
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
-  { label: 'Metodologia', href: '#como-funciona' },
-  { label: 'Pilares ESG', href: '#pilares' },
-  { label: 'Avaliação', href: '#resultado' },
-  { label: 'Sobre', href: '#beneficios' },
+  { label: 'Benefícios', href: '#beneficios' },
+  { label: 'Passos', href: '#como-funciona' },
+  { label: 'Resultado', href: '#resultado' },
+  { label: 'Selos', href: '#metodologia-estruturada' },
+  { label: 'Sobre', href: '#sobre' },
 ]
 
-/** `overHero`: sobre o hero escuro. `solid`: após o hero — barra escura. */
-function HoverNavLink({ href, label, variant }) {
+
+const glassMobileMenu = {
+  mobileDivider: 'border-paper/25',
+  mobileRow: 'text-paper/90 hover:bg-white/[0.12]',
+  mobileCtaFocus: 'focus-visible:ring-paper/50 focus-visible:ring-offset-0',
+}
+
+const navbarThemes = {
+  hero: {
+    barSurface: 'border-paper/60 bg-paper/10 text-paper backdrop-blur-md',
+    navCtaClass:
+      'border border-paper/55 bg-white text-primary hover:bg-white/90 hover:border-paper',
+    navBtnIconClass:
+      'border border-paper/55 bg-white text-primary hover:bg-white/90',
+    logoSrc: logoOnHero,
+    link: {
+      idle: 'text-paper/85',
+      hoverLine: 'text-paper',
+      ring: 'focus-visible:ring-paper focus-visible:ring-offset-2',
+    },
+    ...glassMobileMenu,
+  },
+  pastHero: {
+    barSurface: 'border-muted/10 bg-paper/10 text-paper backdrop-blur-md',
+    navCtaClass:
+      'border border-muted/40 bg-primary text-paper hover:border-primary/45 hover:bg-primary/90',
+    navBtnIconClass:
+      'border border-muted/40 bg-primary text-paper hover:bg-primary/90',
+    logoSrc: logoAfterHero,
+    link: {
+      idle: 'text-muted',
+      hoverLine: 'text-primary',
+      ring: 'focus-visible:ring-paper/40 focus-visible:ring-offset-foreground',
+    },
+    mobileDivider: 'border-paper/20',
+    mobileRow: 'text-muted hover:bg-primary',
+    mobileCtaFocus: 'focus-visible:ring-paper/40 focus-visible:ring-offset-0',
+  },
+  light: {
+    barSurface: 'border-paper/60 bg-paper/10 text-paper backdrop-blur-md',
+    navCtaClass:
+      'border border-paper/55 bg-white text-primary hover:bg-white/90 hover:border-paper',
+    navBtnIconClass:
+      'border border-paper/55 bg-white text-primary hover:bg-white/90',
+    logoSrc: logoOnHero,
+    link: {
+      idle: 'text-paper/85',
+      hoverLine: 'text-paper',
+      ring: 'focus-visible:ring-paper focus-visible:ring-offset-2',
+    },
+    ...glassMobileMenu,
+  },
+}
+
+function HoverNavLink({ href, label, link }) {
   const rowClass =
-    'flex h-6 shrink-0 items-center whitespace-nowrap leading-none text-[15px] font-medium'
-
-  const idle =
-    variant === 'solid' ? 'text-muted' : 'text-paper/85'
-  const hoverLine = variant === 'solid' ? 'text-primary' : 'text-paper'
-
-  const ring =
-    variant === 'solid'
-      ? 'focus-visible:ring-paper/40 focus-visible:ring-offset-foreground'
-      : 'focus-visible:ring-paper focus-visible:ring-offset-2'
+    'flex h-4 shrink-0 items-center whitespace-nowrap leading-none text-[10px] font-medium sm:text-[11px] md:text-xs'
 
   return (
     <a
       href={href}
-      className={`group relative inline-block h-6 overflow-hidden rounded-sm align-middle text-[15px] font-medium leading-none focus-visible:outline-none focus-visible:ring-2 ${ring}`}
+      className={`group relative inline-block h-4 overflow-hidden rounded-sm align-middle text-[10px] font-medium leading-none focus-visible:outline-none focus-visible:ring-2 sm:text-[11px] md:text-xs ${link.ring}`}
     >
-      <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:-translate-y-6 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
-        <span className={`${rowClass} ${idle}`}>{label}</span>
-        <span className={`${rowClass} ${hoverLine}`} aria-hidden="true">
+      <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:-translate-y-4 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
+        <span className={`${rowClass} ${link.idle}`}>{label}</span>
+        <span className={`${rowClass} ${link.hoverLine}`} aria-hidden="true">
           {label}
         </span>
       </span>
@@ -42,21 +91,36 @@ function HoverNavLink({ href, label, variant }) {
   )
 }
 
-/** Atualiza se a navbar já “saiu” visualmente da área do hero (scroll). */
-function useNavbarPastHero(headerRef) {
-  const [isPastHero, setIsPastHero] = useState(false)
+
+function useNavbarThemeKey(headerRef) {
+  const [themeKey, setThemeKey] = useState('hero')
 
   const update = useCallback(() => {
     const hero = document.getElementById('inicio')
-    if (!hero) return
-
     const header = headerRef.current
     const headerH = header?.offsetHeight ?? 80
     const topInset = 20
-
-    const heroBottom = hero.getBoundingClientRect().bottom
     const threshold = topInset + headerH + 4
-    setIsPastHero(heroBottom <= threshold)
+
+    if (hero) {
+      const heroBottom = hero.getBoundingClientRect().bottom
+      if (heroBottom > threshold) {
+        setThemeKey('hero')
+        return
+      }
+    }
+
+    const probeY = threshold
+    const lightSections = document.querySelectorAll('[data-navbar-theme="light"]')
+    for (const el of lightSections) {
+      const r = el.getBoundingClientRect()
+      if (r.top <= probeY && r.bottom >= probeY) {
+        setThemeKey('light')
+        return
+      }
+    }
+
+    setThemeKey('pastHero')
   }, [headerRef])
 
   useLayoutEffect(() => {
@@ -69,57 +133,148 @@ function useNavbarPastHero(headerRef) {
     }
   }, [update])
 
-  return isPastHero
+  return themeKey
 }
 
 export default function Navbar() {
-  const headerRef = useRef(null)
-  const isPastHero = useNavbarPastHero(headerRef)
+  const barRef = useRef(null)
+  const navbarThemeKey = useNavbarThemeKey(barRef)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const onViewportChange = () => {
+      if (mq.matches) closeMenu()
+    }
+    mq.addEventListener('change', onViewportChange)
+    return () => mq.removeEventListener('change', onViewportChange)
+  }, [closeMenu])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeMenu()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen, closeMenu])
+
+  const theme =
+    navbarThemeKey === 'hero'
+      ? navbarThemes.hero
+      : navbarThemeKey === 'light'
+        ? navbarThemes.light
+        : navbarThemes.pastHero
+  const {
+    barSurface,
+    navCtaClass,
+    navBtnIconClass,
+    logoSrc,
+    link,
+    mobileDivider,
+    mobileRow,
+    mobileCtaFocus,
+  } = theme
 
   return (
-    <header
-      ref={headerRef}
-      className={` flex h-16 w-full container-main items-center justify-between rounded-3xl border px-6 py-2 transition-[background-color,border-color,box-shadow,color] duration-300 ease-out md:px-8 md:py-4 ${
-        isPastHero
-          ? 'border-muted/10 bg-paper/10 text-paper backdrop-blur-md'
-          : 'border-paper/60 bg-paper/10 text-paper  backdrop-blur-md'
-      }`}
-    >
-      <a href="#inicio" className="flex shrink-0 items-center">
-        <img
-          key={isPastHero ? 'logo-scrolled' : 'logo-hero'}
-          src={isPastHero ? logoAfterHero : logoOnHero}
-          alt="Somos Sustentáveis"
-          className="h-10 w-auto object-contain object-left transition-opacity duration-300"
-        />
-      </a>
-      <nav
-        id="menu"
-        className="flex max-h-full w-0 flex-col items-center justify-center overflow-hidden transition-[width] max-md:absolute max-md:left-0 max-md:top-0 max-md:flex max-md:bg-transparent md:w-auto md:flex-row md:gap-8"
-      >
-        {navLinks.map((link) => (
-          <HoverNavLink
-            key={link.href}
-            href={link.href}
-            label={link.label}
-            variant={isPastHero ? 'solid' : 'overHero'}
-          />
-        ))}
-        <button type="button" id="closeMenu" className="md:hidden text-paper/80">
-          <X className="h-6 w-6" />
-        </button>
-      </nav>
-      <div className="flex items-center space-x-4">
-        <a
-          href="#resultado"
-          className={`hidden min-h-[44px] items-center rounded-2xl px-5 text-sm font-semibold transition-colors duration-200 md:inline-flex ${
-            isPastHero
-              ? 'bg-primary border border-primary text-paper hover:bg-paper hover:text-primary hover:border-primary'
-              : 'bg-paper text-primary hover:bg-primary hover:text-paper'
-          }`}
+    <header className="w-full min-w-0 max-w-[100vw]">
+      <div className="container-main relative max-w-full">
+        <div
+          ref={barRef}
+          className={`hero-animate-fade hero-delay-0 flex w-full max-w-full flex-col overflow-hidden rounded-xl border transition-[background-color,border-color,box-shadow,color] duration-300 ease-out md:rounded-2xl ${barSurface}`}
         >
-          Iniciar Avaliação
-        </a>
+          
+          <div className="flex h-12 min-h-12 items-center justify-between gap-2 px-3 sm:gap-2.5 sm:px-4 md:h-auto md:min-h-14 md:px-5">
+            <a
+              href="#inicio"
+              className="hero-animate-nav hero-delay-1 flex min-w-0 shrink-0 items-center"
+              onClick={closeMenu}
+            >
+              <img
+                src={logoSrc}
+                alt="Somos Sustentáveis"
+                className="h-7 w-auto max-w-[120px] object-contain object-left transition-opacity duration-300 sm:h-8 sm:max-w-[140px]"
+              />
+            </a>
+
+            <nav
+              aria-label="Principal"
+              className="hero-animate-nav hero-delay-2 hidden min-w-0 flex-1 items-center justify-center gap-3 md:flex md:gap-4 lg:gap-5 xl:gap-6"
+            >
+              {navLinks.map((item) => (
+                <HoverNavLink
+                  key={item.href}
+                  href={item.href}
+                  label={item.label}
+                  link={link}
+                />
+              ))}
+            </nav>
+
+            <div className="hero-animate-nav hero-delay-3 flex shrink-0 items-center gap-1.5 sm:gap-2">
+              <a
+                href="#finalcta"
+                className={`hidden min-h-8 items-center whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold tracking-tight transition-[background-color,border-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/50 focus-visible:ring-offset-0 md:inline-flex md:min-h-9 md:px-2.5 md:text-[11px] lg:rounded-lg lg:px-3 lg:text-xs ${navCtaClass}`}
+              >
+                Iniciar avaliação
+              </a>
+
+              <button
+                type="button"
+                className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-[background-color,border-color,color] duration-200 md:hidden ${navBtnIconClass}`}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-nav-panel"
+                aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                {menuOpen ? (
+                  <X className="h-4 w-4" aria-hidden />
+                ) : (
+                  <Menu className="h-4 w-4" aria-hidden />
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="mobile-nav-panel"
+            className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none md:hidden ${
+              menuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+            }`}
+          >
+            <nav
+              className="min-h-0 overflow-hidden"
+              aria-label="Navegação mobile"
+              aria-hidden={!menuOpen}
+            >
+              <div
+                className={`flex flex-col gap-0.5 border-t px-3 py-2.5 sm:px-4 sm:py-3 ${mobileDivider}`}
+              >
+                {navLinks.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    tabIndex={menuOpen ? undefined : -1}
+                    className={`rounded-lg px-2 py-1.5 text-[10px] font-medium leading-snug transition-colors motion-reduce:transition-none sm:px-2.5 sm:py-2 sm:text-[11px] ${mobileRow}`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <a
+                  href="#finalcta"
+                  onClick={closeMenu}
+                  tabIndex={menuOpen ? undefined : -1}
+                  className={`mt-2 flex min-h-9 w-full shrink-0 items-center justify-center rounded-xl px-3 py-1.5 text-[10px] font-semibold tracking-tight transition-[background-color,border-color,color] duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 sm:mt-2.5 sm:text-[11px] ${mobileCtaFocus} ${navCtaClass}`}
+                >
+                  Iniciar avaliação
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
       </div>
     </header>
   )

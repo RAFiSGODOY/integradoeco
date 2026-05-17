@@ -1,51 +1,69 @@
+import { useRef } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+import prata from '../assets/nivelprata.png'
+import logo from '../assets/1.png'
+import bronze from '../assets/nivelbronze.png'
+import ouro from '../assets/nivelouro.png'
+import { ROUTES } from '../constants/routes'
+
 const navLinks = [
   { label: 'Início', href: '#inicio' },
-  { label: 'Metodologia', href: '#como-funciona' },
-  { label: 'Sobre', href: '#beneficios' },
-  { label: 'Avaliação', href: '#resultado' },
+  { label: 'Benefícios', href: '#beneficios' },
+  { label: 'Como funciona', href: '#como-funciona' },
+  { label: 'Resultado', href: '#resultado' },
+  { label: 'Selos', href: '#metodologia-estruturada' },
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Avaliação gratuita', href: '#finalcta' },
 ]
 
 const legalLinks = [
-  { label: 'Privacidade', href: '#' },
-  { label: 'Termos de Uso', href: '#' },
+  { label: 'Privacidade', href: ROUTES.privacy },
+  { label: 'Termos de Uso', href: ROUTES.terms },
 ]
 
+const columnTitleClass =
+  'mb-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-muted sm:text-[10px]'
+
+const linkClass = 'text-xs text-tertiary transition-colors hover:text-primary sm:text-sm'
+
 export default function Footer() {
+  const footerRef = useRef(null)
+  useScrollReveal(footerRef)
+
   return (
-    <footer className="bg-foreground text-paper">
-      <div className="container-main py-14 lg:py-16">
-        <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-8">
-          <div className="md:col-span-2">
-            <a href="#inicio" className="mb-4 inline-flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2L17 6V14L10 18L3 14V6L10 2Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-                  <path d="M10 7V13M7 10H13" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </div>
-              <span className="text-[17px] font-bold leading-none text-paper">
-                Somos<span className="text-secondary">Sustentáveis</span>
-              </span>
+    <footer ref={footerRef} className="overflow-x-hidden bg-paper text-foreground mt-5 sm:mt-0">
+      <div className="container-main px-5  py-10 sm:py-12 lg:py-14">
+        <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mb-10 lg:grid-cols-4 lg:gap-8">
+          <div
+            data-scroll-reveal="text"
+            className="flex min-w-0 flex-col items-center text-center sm:col-span-2 sm:items-start sm:text-left lg:col-span-2"
+          >
+            <a href="#inicio" className="mb-3 inline-flex items-center gap-2 sm:mb-3.5">
+              <img src={logo} alt="Logo Somos Sustentáveis" className="h-10 w-auto sm:h-11 lg:h-12" />
             </a>
-            <p className="max-w-[320px] text-[14px] text-tertiary" style={{ lineHeight: '1.65' }}>
-              Plataforma SaaS de avaliação e diagnóstico ESG para instituições que buscam desempenho, credibilidade e sustentabilidade.
+            <p className="max-w-sm text-pretty text-xs leading-snug text-tertiary sm:max-w-[320px] sm:text-sm sm:leading-relaxed">
+              Plataforma de avaliação e diagnóstico ESG para instituições que buscam desempenho,
+              credibilidade e sustentabilidade.
             </p>
-            <div className="mt-5 flex items-center gap-2">
+            <div className="mt-4 w-full sm:mt-4.5">
               <a
                 href="mailto:contato@somossustentaveis.com.br"
-                className="text-[13px] text-muted transition-colors hover:text-paper"
+                className="inline-block max-w-full break-all text-[10px] text-muted transition-colors hover:text-primary sm:break-normal sm:text-xs"
               >
                 contato@somossustentaveis.com.br
               </a>
             </div>
           </div>
 
-          <div>
-            <p className="mb-4 text-[12px] font-semibold uppercase tracking-wider text-muted">Navegação</p>
-            <ul className="space-y-3">
+         <div
+            data-scroll-reveal="item"
+            className="min-w-0 flex flex-col items-center text-center sm:items-start sm:text-left"
+          >
+            <p className={columnTitleClass}>Navegação</p>
+            <ul className="space-y-2 sm:space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-[14px] text-tertiary transition-colors hover:text-paper">
+                  <a href={link.href} className={linkClass}>
                     {link.label}
                   </a>
                 </li>
@@ -53,38 +71,60 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <p className="mb-4 text-[12px] font-semibold uppercase tracking-wider text-muted">Legal</p>
-            <ul className="mb-7 space-y-3">
+          <div
+            data-scroll-reveal="item"
+            className="min-w-0 flex flex-col items-center text-center sm:items-start sm:text-left"
+          >
+            <p className={columnTitleClass}>Legal</p>
+            <ul className="mb-5 space-y-2 sm:mb-6 sm:space-y-2.5">
               {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-[14px] text-tertiary transition-colors hover:text-paper">
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-            <div>
-              <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-muted">Score ESG</p>
-              <div className="inline-flex items-center gap-2 rounded-xl border border-paper/15 bg-paper/5 px-3 py-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary">
-                  <span className="text-[10px] font-bold text-paper">72</span>
-                </div>
-                <div>
-                  <p className="text-[11px] font-medium leading-none text-paper">Nível Silver</p>
-                  <p className="mt-0.5 text-[10px] leading-none text-muted">Demonstrativo</p>
-                </div>
-              </div>
+
+            <p className={`${columnTitleClass} mb-2.5 sm:mb-3`}>Score ESG</p>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start sm:gap-2.5">
+              <a href="#metodologia-estruturada" className="shrink-0">
+                <img
+                  src={bronze}
+                  alt="Nível Bronze"
+                  className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
+                />
+              </a>
+              <a href="#metodologia-estruturada" className="shrink-0">
+                <img
+                  src={prata}
+                  alt="Nível Prata"
+                  className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
+                />
+              </a>
+              <a href="#metodologia-estruturada" className="shrink-0">
+                <img
+                  src={ouro}
+                  alt="Nível Ouro"
+                  className="h-9 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-10 lg:h-11"
+                />
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-3 border-t border-paper/10 pt-7 sm:flex-row">
-          <p className="text-[13px] text-muted">© {new Date().getFullYear()} SomosSustentáveis. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-positive" />
-            <span className="text-[13px] text-muted">Plataforma operacional</span>
-          </div>
+        <div
+          data-scroll-reveal="text"
+          className="flex flex-col items-center justify-center gap-2 border-t border-border pt-5 text-center sm:gap-2.5 sm:pt-6"
+        >
+          <p className="max-w-full text-pretty px-1 text-[10px] leading-snug text-muted sm:text-xs">
+            © {new Date().getFullYear()} Somos Sustentáveis. Todos os direitos reservados.
+          </p>
         </div>
       </div>
     </footer>

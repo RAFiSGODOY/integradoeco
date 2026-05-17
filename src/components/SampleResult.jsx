@@ -1,104 +1,152 @@
-import {
-  Gauge,
-  LayoutGrid,
-  Sparkles,
-  ClipboardList,
-  ShieldCheck,
-} from 'lucide-react'
-import resultImage from '../assets/classificacao2.png'
+import { useRef } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+import { ClipboardList, Gauge, LayoutGrid, Sparkles, ArrowRight } from 'lucide-react'
+
+import resultImage from '../assets/exemplo.png'
 
 const benefits = [
   {
     title: 'Score geral ESG',
-    description: 'Visualize uma pontuação objetiva para entender o nível atual da instituição.',
+    description: 'Pontuação objetiva do nível atual da instituição.',
     Icon: Gauge,
   },
   {
     title: 'Breakdown por pilar',
-    description: 'Veja o desempenho separado por Ambiental, Social e Governança.',
+    description: 'Desempenho por Ambiental, Social e Governança.',
     Icon: LayoutGrid,
   },
   {
     title: 'Insights acionáveis',
-    description: 'Identifique pontos fortes, riscos e oportunidades de melhoria.',
+    description: 'Pontos fortes, riscos e oportunidades de melhoria.',
     Icon: Sparkles,
   },
   {
     title: 'Recomendações práticas',
-    description: 'Receba direcionamentos para evoluir sua maturidade ESG.',
+    description: 'Direcionamentos para evoluir a maturidade ESG.',
     Icon: ClipboardList,
   },
 ]
 
 export default function SampleResult() {
+  const sectionRef = useRef(null)
+  useScrollReveal(sectionRef)
+
   return (
-    <section id="resultado" className="font-inter bg-paper py-20 md:py-24 lg:py-28">
-      <div className="container-main mx-auto max-w-[1200px]">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-          {/* Coluna esquerda — valor e conversão */}
-          <div className="min-w-0">
-          <div className="mb-5 inline-flex items-center border-b-2 border-secondary px-2 py-1">
-            <span className="text-sm font-semibold tracking-wide text-secondary">
-              Resultado exemplo
-            </span>
+    <section
+      ref={sectionRef}
+      id="resultado"
+      className="relative overflow-x-hidden bg-[#F9FAFB] px-5 py-10 font-inter scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.5rem+0.75rem)] sm:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] sm:py-14 md:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+3.625rem+1rem)] md:py-16 lg:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4rem+1rem)] lg:py-22 xl:scroll-mt-[calc(env(safe-area-inset-top,0px)+1.25rem+4.25rem+1rem)] xl:py-26"
+    >
+      <div className="container-main">
+        <header className="mb-6 flex flex-col gap-2 sm:mb-8 sm:gap-3 justify-center items-center lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+          <div className="min-w-0 text-center lg:max-w-md lg:text-left">
+            <div
+              data-scroll-reveal="text"
+              className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
+            >
+              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
+                Exemplo de relatório
+              </span>
+            </div>
+            <h2
+              data-scroll-reveal="text"
+              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+            >
+              Receba um relatório completo ESG
+            </h2>
           </div>
 
-            <h2
-              className="mb-4 font-bold tracking-tight text-foreground"
-              style={{ fontSize: 'clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem)', lineHeight: '1.2' }}
-            >
-              Veja um exemplo de resultado ESG
-            </h2>
+          <p
+            data-scroll-reveal="text"
+            className="min-w-0 max-w-md text-center text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-sm lg:pb-0.5 lg:text-left"
+          >
+            Score geral, desempenho por pilar e recomendações para evolução.
+          </p>
+        </header>
 
-            <p className="mb-10 max-w-xl text-[17px] leading-relaxed text-muted" >
-              Após a avaliação, sua instituição recebe um diagnóstico claro com score geral, desempenho por pilar e
-              recomendações para evolução.
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:items-start md:gap-8 lg:gap-10">
+          <div data-scroll-reveal="image" className="relative min-w-0">
+            <div className="group relative overflow-hidden rounded-xl border border-border bg-surface-muted shadow-card-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/20 hover:shadow-card-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:rounded-2xl lg:rounded-3xl">
+              <img
+                src={resultImage}
+                alt="Exemplo ilustrativo de relatório com score e pilares ESG"
+                className="aspect-[4/3] h-auto w-full max-h-[180px] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:max-h-[220px] md:max-h-[260px] lg:max-h-[340px] xl:max-h-[380px]"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"
+                aria-hidden
+              />
+            </div>
+            <p className="mt-2 text-center text-[10px] leading-snug text-muted sm:mt-2.5 sm:text-xs md:text-left">
+              Imagem ilustrativa do resultado da avaliação.
             </p>
+          </div>
 
-            <ul className="mb-10 flex flex-col gap-8">
+          <div className="flex min-w-0 flex-col justify-center gap-5 sm:gap-6">
+            <ul className="flex flex-col gap-2.5 sm:gap-3">
               {benefits.map(({ title, description, Icon }) => (
-                <li key={title} className="flex gap-4">
+                <li
+                  key={title}
+                  className="group relative overflow-hidden rounded-lg border border-transparent bg-[#F9FAFB] transition-all duration-300 ease-out hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                >
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] shadow  bg-paper"
-
+                    data-scroll-reveal="item"
+                    className="relative flex gap-3 p-2.5 sm:gap-3.5 sm:p-3"
                   >
-                    <Icon size={20} strokeWidth={1.75}  aria-hidden color="var(--color-secondary)" />
-                  </div>
-                  <div className="min-w-0 pt-0.5">
-                    <p className="mb-1 text-[16px] font-semibold leading-snug text-foreground">{title}</p>
-                    <p className="text-[15px] leading-relaxed text-muted" >
-                      {description}
-                    </p>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-muted/80 transition-colors duration-300 group-hover:border-primary/25 group-hover:bg-primary/[0.06] sm:h-10 sm:w-10">
+                      <Icon
+                        className="h-3.5 w-3.5 text-secondary transition-colors duration-300 group-hover:text-primary sm:h-4 sm:w-4"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold leading-snug text-[#101828] transition-colors duration-300 group-hover:text-primary sm:text-sm">
+                        {title}
+                      </p>
+                      <p className="mt-0.5 text-[10px] leading-snug text-muted sm:text-xs sm:leading-relaxed">
+                        {description}
+                      </p>
+                    </div>
+                    <div
+                      className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
+                      aria-hidden
+                    />
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="flex flex-col gap-3">
-              <a
-                
-                className="inline-flex h-14 w-full items-center justify-center rounded-tl-full rounded-br-full bg-gray-300 px-8 text-[16px] font-semibold leading-tight text-paper shadow-[0_4px_14px_rgba(0,86,95,0.22)] transition-all duration-200 hover:bg-gray-400 hover:shadow-[0_6px_20px_rgba(0,70,77,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00565F] focus-visible:ring-offset-2 lg:w-auto lg:max-w-[460px]"
-              >
-                Em breve
-              </a>
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={20} strokeWidth={1.75}  aria-hidden color="var(--color-secondary)" />
-                <p className="text-center text-[12px] leading-relaxed text-muted lg:text-left">
-                Seus dados estão protegidos e não serão compartilhados com terceiros.
-              </p>
-              </div>
-              
-            </div>
+
+
           </div>
 
-          {/* Coluna direita — mockup / imagem futura */}
-          <div className="min-w-0 lg:justify-self-end lg:pl-2">
-            <div
-              className="flex min-h-[360px] max-h-[420px] h-[400px] w-full flex-col items-center justify-center  text-center lg:h-[580px] lg:min-h-[520px] lg:max-h-[620px]"
-             
-            >
-              <img src={resultImage} alt="Resultado ESG" className="w-full h-full object-cover" />
-             
+        </div>
+        <div data-scroll-reveal="cta" className="mt-4 lg:mt-10 border-t border-border/70 pt-4">
+          <div className=" flex flex-col items-center justify-center text-center w-full">
+            <div>
+              <p className="text-pretty text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
+               Receba relatório ESG completo para sua instituição e identifique oportunidades de melhoria.
+              </p>
+            
+            </div>
+            <div className="mt-5  flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6">
+            <a
+              href="#finalcta"
+              className=" rounded-tl-full rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+              Iniciar avaliação gratuita
+            </a>
+
+              <a
+                href="#faq"
+                className="group inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-[11px] md:text-xs"
+              >
+                Duvidas frequentes
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} aria-hidden />
+              </a>
             </div>
           </div>
         </div>

@@ -20,12 +20,12 @@
 
   html {
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE / Edge legado */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
   }
 
   html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none; 
   }
 
   body {
@@ -47,7 +47,7 @@
   .container-main {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 64px;
   }
 
   @media (max-width: 768px) {
@@ -59,6 +59,122 @@
   @media (min-width: 769px) and (max-width: 1024px) {
     .container-main {
       padding: 0 24px;
+    }
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hero-bg-in {
+    from {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    to {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+  }
+
+  .hero-animate-bg {
+    opacity: 0;
+    animation: hero-bg-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-animate-fade {
+    opacity: 0;
+    animation: hero-fade-in 0.85s ease-out forwards;
+  }
+
+  .hero-animate-up {
+    opacity: 0;
+    animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-animate-nav {
+    opacity: 0;
+    animation: hero-fade-down 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-delay-0 {
+    animation-delay: 0.05s;
+  }
+
+  .hero-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .hero-delay-2 {
+    animation-delay: 0.22s;
+  }
+
+  .hero-delay-3 {
+    animation-delay: 0.34s;
+  }
+
+  .hero-delay-4 {
+    animation-delay: 0.46s;
+  }
+
+  .hero-delay-5 {
+    animation-delay: 0.58s;
+  }
+
+  .hero-delay-6 {
+    animation-delay: 0.7s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animate-bg {
+      opacity: 0.45;
+      animation: none;
+      transform: none;
+    }
+
+    .hero-animate-fade,
+    .hero-animate-up,
+    .hero-animate-nav {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
+
+    .hero-delay-0,
+    .hero-delay-1,
+    .hero-delay-2,
+    .hero-delay-3,
+    .hero-delay-4,
+    .hero-delay-5,
+    .hero-delay-6 {
+      animation-delay: 0s;
     }
   }
 }
