@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { logoMain, sealBronze, sealPrata, sealOuro } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
@@ -77,14 +78,9 @@ export default function Footer() {
             <ul className="mb-5 space-y-2 sm:mb-6 sm:space-y-2.5">
               {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClass}
-                  >
+                  <Link to={link.href} className={linkClass}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

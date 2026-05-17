@@ -44,15 +44,13 @@ export default function LegalPageLayout({ title, description, children }) {
               className="h-9 w-auto object-contain sm:h-10"
             />
           </Link>
-          <a
-            href={ROUTES.home}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to={ROUTES.home}
             className="inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-xs"
           >
             <ArrowLeft className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
             Voltar ao site
-          </a>
+          </Link>
         </div>
       </header>
 
