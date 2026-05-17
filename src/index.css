@@ -176,5 +176,82 @@
     .hero-delay-6 {
       animation-delay: 0s;
     }
+
+    .floating-cta-bounce {
+      animation: none;
+    }
+  }
+
+  @keyframes floating-cta-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  .floating-cta-bounce {
+    animation: floating-cta-bounce 2s ease-in-out infinite;
+  }
+
+  .testimonials-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent
+    );
+  }
+
+  .testimonials-marquee__track {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    will-change: transform;
+  }
+
+  .testimonials-marquee__track--right {
+    animation: testimonials-marquee-right 55s linear infinite;
+  }
+
+  .testimonials-marquee__track--left {
+    animation: testimonials-marquee-left 50s linear infinite;
+  }
+
+  @keyframes testimonials-marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes testimonials-marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-marquee__track--right,
+    .testimonials-marquee__track--left {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .testimonials-marquee {
+      mask-image: none;
+      overflow: visible;
+    }
   }
 }

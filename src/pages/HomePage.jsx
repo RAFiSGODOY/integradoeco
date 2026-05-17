@@ -10,6 +10,7 @@ import Footer from '../components/Footer'
 import AboutSection from '../components/about'
 import FAQ from '../components/FAQ'
 import SocialProof from '../components/SocialProof'
+import FloatingCta from '../components/FloatingCta'
 
 export default function HomePage() {
   return (
@@ -54,6 +55,7 @@ export default function HomePage() {
       <div className="relative z-10">
         <Footer />
       </div>
+      <FloatingCta />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ArrowRight } from 'lucide-react'
+import '../components/style.css'
 const benefits = [
   {
     number: '01',
@@ -36,10 +37,10 @@ function CtaActions({ className }) {
             </p>
 
           </div>
-          <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6 lg:justify-start">
+          <div className="mt-4  flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6 lg:justify-start">
             <a
               href="#finalcta"
-              className=" rounded-tl-full rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+              className=" rounded-tl-full btn-shine btn-shine__content rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
               Iniciar avaliação gratuita
             </a>
 
