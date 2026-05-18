@@ -1,6 +1,17 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ClipboardList, Gauge, LayoutGrid, Sparkles, ArrowRight } from 'lucide-react'
+import {
+  btnPrimaryShine,
+  caption,
+  cardBody,
+  cardTitle,
+  ctaBlockTitle,
+  linkSecondary,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+} from '../constants/typography'
 
 import { resultExample } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
@@ -45,13 +56,11 @@ export default function SampleResult() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Exemplo de relatório
-              </span>
+              <span className={sectionEyebrow}>Exemplo de relatório</span>
             </div>
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Receba um relatório completo ESG
             </h2>
@@ -59,7 +68,7 @@ export default function SampleResult() {
 
           <p
             data-scroll-reveal="text"
-            className="min-w-0 max-w-md text-center text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-sm lg:pb-0.5 lg:text-left"
+            className={`min-w-0 max-w-md text-center lg:max-w-sm lg:pb-0.5 lg:text-left ${sectionLead}`}
           >
             Score geral, desempenho por pilar e recomendações para evolução.
           </p>
@@ -79,7 +88,7 @@ export default function SampleResult() {
                 aria-hidden
               />
             </div>
-            <p className="mt-2 text-center text-[10px] leading-snug text-muted sm:mt-2.5 sm:text-xs md:text-left">
+            <p className={`mt-2 text-center sm:mt-2.5 md:text-left ${caption}`}>
               Imagem ilustrativa do resultado da avaliação.
             </p>
           </div>
@@ -103,12 +112,12 @@ export default function SampleResult() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold leading-snug text-[#101828] transition-colors duration-300 group-hover:text-primary sm:text-sm">
+                      <p
+                        className={`font-semibold text-[#101828] transition-colors duration-300 group-hover:text-primary ${cardTitle}`}
+                      >
                         {title}
                       </p>
-                      <p className="mt-0.5 text-[10px] leading-snug text-muted sm:text-xs sm:leading-relaxed">
-                        {description}
-                      </p>
+                      <p className={`mt-0.5 ${cardBody}`}>{description}</p>
                     </div>
                     <div
                       className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
@@ -127,22 +136,17 @@ export default function SampleResult() {
         <div data-scroll-reveal="cta" className="mt-4 lg:mt-10 border-t border-border/70 pt-4">
           <div className=" flex flex-col items-center justify-center text-center w-full">
             <div>
-              <p className="text-pretty text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
-               Receba relatório ESG completo para sua instituição e identifique oportunidades de melhoria.
+              <p className={ctaBlockTitle}>
+                Receba relatório ESG completo para sua instituição e identifique oportunidades de melhoria.
               </p>
             
             </div>
             <div className="mt-5  flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6">
-            <a
-              href="#finalcta"
-              className=" rounded-tl-full btn-shine btn-shine__content rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+            <a href="#finalcta" className={btnPrimaryShine}>
               Iniciar avaliação gratuita
             </a>
 
-              <a
-                href="#faq"
-                className="group inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-[11px] md:text-xs"
-              >
+              <a href="#faq" className={linkSecondary}>
                 Duvidas frequentes
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} aria-hidden />
               </a>

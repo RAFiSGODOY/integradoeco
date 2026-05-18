@@ -4,6 +4,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import { logoMain, sealBronze, sealPrata, sealOuro } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
 import { ROUTES } from '../constants/routes'
+import { footerColumnTitle, footerLink, footerMeta } from '../constants/typography'
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -20,10 +21,8 @@ const legalLinks = [
   { label: 'Termos de Uso', href: ""},
 ]
 
-const columnTitleClass =
-  'mb-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-muted sm:text-[10px]'
-
-const linkClass = 'text-xs text-tertiary transition-colors hover:text-primary sm:text-sm'
+const columnTitleClass = footerColumnTitle
+const linkClass = footerLink
 
 export default function Footer() {
   const footerRef = useRef(null)
@@ -40,14 +39,14 @@ export default function Footer() {
             <a href="#inicio" className="mb-3 inline-flex items-center gap-2 sm:mb-3.5">
               <OptimizedImage src={logoMain} alt="Logo Somos Sustentáveis" className="h-10 w-auto sm:h-11 lg:h-12" />
             </a>
-            <p className="max-w-sm text-pretty text-xs leading-snug text-tertiary sm:max-w-[320px] sm:text-sm sm:leading-relaxed">
+            <p className="max-w-sm text-pretty text-sm leading-snug text-tertiary sm:max-w-[320px] sm:text-base sm:leading-relaxed">
               Plataforma de avaliação e diagnóstico ESG para instituições que buscam desempenho,
               credibilidade e sustentabilidade.
             </p>
             <div className="mt-4 w-full sm:mt-4.5">
               <a
                 href="mailto:contato@somossustentaveis.com.br"
-                className="inline-block max-w-full break-all text-[10px] text-muted transition-colors hover:text-primary sm:break-normal sm:text-xs"
+                className="inline-block max-w-full break-all text-xs text-muted transition-colors hover:text-primary sm:break-normal sm:text-sm"
               >
                 contato@somossustentaveis.com.br
               </a>
@@ -116,7 +115,7 @@ export default function Footer() {
           data-scroll-reveal="text"
           className="flex flex-col items-center justify-center gap-2 border-t border-border pt-5 text-center sm:gap-2.5 sm:pt-6"
         >
-          <p className="max-w-full text-pretty px-1 text-[10px] leading-snug text-muted sm:text-xs">
+          <p className={`max-w-full text-pretty px-1 ${footerMeta}`}>
             © {new Date().getFullYear()} Somos Sustentáveis. Todos os direitos reservados.
           </p>
         </div>

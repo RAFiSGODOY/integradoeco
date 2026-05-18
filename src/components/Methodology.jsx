@@ -1,6 +1,17 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ArrowRight } from 'lucide-react'
+import {
+  btnPrimaryShine,
+  cardBody,
+  cardTitle,
+  ctaBlockTitle,
+  linkSecondary,
+  sectionAsideLabel,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+} from '../constants/typography'
 
 import { sealBronze, sealPrata, sealOuro } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
@@ -47,22 +58,15 @@ function CtaActions({ className }) {
       <div className="mt-4 border-t border-border/70 pt-4">
           <div className=" flex flex-col items-center justify-center text-center lg:items-start lg:justify-start lg:text-left w-full">
             <div>
-              <p className="text-pretty text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
-               Descubra em qual nível sua instituição se encontra.
-              </p>
+              <p className={ctaBlockTitle}>Descubra em qual nível sua instituição se encontra.</p>
             
             </div>
             <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6">
-            <a
-              href="#finalcta"
-              className=" rounded-tl-full btn-shine btn-shine__content rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+            <a href="#finalcta" className={btnPrimaryShine}>
               Iniciar avaliação gratuita
             </a>
 
-              <a
-                href="#resultado"
-                className="group inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-[11px] md:text-xs"
-              >
+              <a href="#resultado" className={linkSecondary}>
                 Ver exemplo de relatório
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} aria-hidden />
               </a>
@@ -89,22 +93,18 @@ function SealCard({ level }) {
       </div>
 
       <span
-        className={`mt-2 inline-flex rounded-md border px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.08em] sm:mt-2.5 sm:px-2 sm:text-[9px] ${level.badgeClass}`}
+        className={`mt-2 inline-flex rounded-md border px-1.5 py-0.5 text-xs font-semibold uppercase tracking-[0.08em] sm:mt-2.5 sm:px-2 ${level.badgeClass}`}
       >
         {level.name}
       </span>
 
-      <h3 className="mt-1.5 text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
-        {level.label}
-      </h3>
+      <h3 className={`mt-1.5 ${cardTitle}`}>{level.label}</h3>
 
-      <p className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.1em] text-muted sm:text-[10px]">
+      <p className="mt-0.5 text-xs font-medium uppercase tracking-[0.1em] text-muted sm:text-sm">
         Nota: {level.range}
       </p>
 
-      <p className="mt-2 text-[10px] leading-snug text-muted sm:text-xs sm:leading-relaxed">
-        {level.description}
-      </p>
+      <p className={`mt-2 ${cardBody}`}>{level.description}</p>
 
       <div
         className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
@@ -131,21 +131,19 @@ export default function MethodologySection() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Selos ESG
-              </span>
+              <span className={sectionEyebrow}>Selos ESG</span>
             </div>
 
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Como funcionam os selos ESG
             </h2>
 
             <p
               data-scroll-reveal="text"
-              className="mt-2 max-w-md text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed md:max-w-lg"
+              className={`mt-2 max-w-md md:max-w-lg sm:mt-2.5 ${sectionLead}`}
             >
               Ao final do questionário, sua instituição recebe um score de 0 a 100 e um selo Bronze, Prata ou Ouro
               que resume a maturidade ESG.
@@ -157,7 +155,7 @@ export default function MethodologySection() {
           <div className="min-w-0 w-full">
             <p
               data-scroll-reveal="label"
-              className="mb-3 text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-tertiary sm:mb-4 sm:text-[10px] lg:text-left"
+              className={`mb-3 text-center sm:mb-4 lg:text-left ${sectionAsideLabel}`}
             >
               Níveis de classificação
             </p>

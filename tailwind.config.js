@@ -38,6 +38,8 @@ export default {
         hero: ['64px', { lineHeight: '72px' }],
         'hero-md': ['48px', { lineHeight: '56px' }],
         'hero-sm': ['36px', { lineHeight: '44px' }],
+        'section-title': ['36px', { lineHeight: '44px' }],
+        'section-lead': ['18px', { lineHeight: '28px' }],
       },
       maxWidth: {
         container: '1200px',

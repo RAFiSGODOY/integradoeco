@@ -1,8 +1,17 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ArrowRight, Award, BarChart3, ClipboardList } from 'lucide-react'
-
-const bodyClass = 'text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed'
+import {
+  btnPrimaryShine,
+  cardBody,
+  cardLabel,
+  cardTitle,
+  ctaBlockTitle,
+  linkSecondary,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+} from '../constants/typography'
 
 const linkClass =
   'font-semibold text-primary underline-offset-2 transition-colors hover:text-primary-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1 rounded-sm'
@@ -35,7 +44,7 @@ const steps = [
 function StepDescription({ step }) {
   if (step.pillarsLink) {
     return (
-      <p className={bodyClass}>
+      <p className={cardBody}>
         Perguntas objetivas sobre{' '}
         <a href="#pilares" className={linkClass}>
           práticas ESG
@@ -47,7 +56,7 @@ function StepDescription({ step }) {
 
   if (step.metodologiaLink) {
     return (
-      <p className={bodyClass}>
+      <p className={cardBody}>
         {step.description}{' '}
         <a href="#metodologia-estruturada" className={linkClass}>
           Saiba como funcionam os selos
@@ -57,7 +66,7 @@ function StepDescription({ step }) {
     )
   }
 
-  return <p className={bodyClass}>{step.description}</p>
+  return <p className={cardBody}>{step.description}</p>
 }
 
 function TimelineNode({ step }) {
@@ -96,12 +105,8 @@ function TimelineStep({ step, isLast }) {
       <article
         className={`min-w-0 flex-1 text-pretty lg:max-w-[16rem] lg:px-1 xl:max-w-xs ${isLast ? 'pb-0' : 'pb-8 sm:pb-10 lg:pb-0'}`}
       >
-        <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-secondary sm:text-[10px]">
-          Passo {step.number}
-        </p>
-        <h3 className="mt-1 text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
-          {step.title}
-        </h3>
+        <p className={cardLabel}>Passo {step.number}</p>
+        <h3 className={`mt-1 ${cardTitle}`}>{step.title}</h3>
         <div className="mt-2 sm:mt-2.5">
           <StepDescription step={step} />
         </div>
@@ -127,13 +132,11 @@ export default function HowItWorks() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Como funciona
-              </span>
+              <span className={sectionEyebrow}>Como funciona</span>
             </div>
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Seu relatório ESG em 3 passos
             </h2>
@@ -141,7 +144,7 @@ export default function HowItWorks() {
 
           <p
             data-scroll-reveal="text"
-            className="min-w-0 mx-auto max-w-md text-center text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-sm lg:pb-0.5"
+            className={`min-w-0 mx-auto max-w-md text-center lg:max-w-sm lg:pb-0.5 ${sectionLead}`}
           >
             Responda, analise automaticamente e veja o nível ESG da sua instituição.
           </p>
@@ -167,22 +170,17 @@ export default function HowItWorks() {
         <div data-scroll-reveal="cta" className="mt-8 border-t border-border/70 pt-4">
           <div className=" flex flex-col items-center justify-center text-center w-full">
             <div>
-              <p className="text-pretty text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
+              <p className={ctaBlockTitle}>
                 Avalie-se gratuitamente e receba o relatório ESG da sua instituição.
               </p>
             
             </div>
             <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6">
-            <a
-              href="#finalcta"
-              className=" rounded-tl-full btn-shine btn-shine__content rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+            <a href="#finalcta" className={btnPrimaryShine}>
               Iniciar avaliação gratuita
             </a>
 
-              <a
-                href="#resultado"
-                className="group inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-[11px] md:text-xs"
-              >
+              <a href="#resultado" className={linkSecondary}>
                 Ver exemplo de relatório
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} aria-hidden />
               </a>

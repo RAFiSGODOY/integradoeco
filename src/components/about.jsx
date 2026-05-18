@@ -1,6 +1,12 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { aboutEsg, partnerEco, partnerIntegrado } from '../assets/images'
+import {
+  sectionAsideLabel,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+} from '../constants/typography'
 import OptimizedImage from './OptimizedImage'
 
 function PartnersBlock({ className = '' }) {
@@ -8,7 +14,7 @@ function PartnersBlock({ className = '' }) {
     <div className={className}>
       <p
         data-scroll-reveal="label"
-        className="text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-tertiary sm:text-[10px] lg:text-left"
+        className={`text-center lg:text-left ${sectionAsideLabel}`}
       >
         Instituições parceiras
       </p>
@@ -49,21 +55,19 @@ export default function AboutSection() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Sobre nós
-              </span>
+              <span className={sectionEyebrow}>Sobre nós</span>
             </div>
 
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Diagnóstico ESG para sua instituição
             </h2>
 
             <p
               data-scroll-reveal="text"
-              className="mt-2 max-w-md text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed md:max-w-lg"
+              className={`mt-2 max-w-md md:max-w-lg sm:mt-2.5 ${sectionLead}`}
             >
               O Somos Sustentáveis ajuda instituições a entenderem sua maturidade ESG por meio de uma avaliação
               estruturada, baseada nos pilares Ambiental, Social e Governança. A proposta é transformar respostas simples

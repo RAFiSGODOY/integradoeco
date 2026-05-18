@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { Quote } from 'lucide-react'
+import { sectionEyebrow, sectionLead, sectionTitle } from '../constants/typography'
 import { sealBronze, sealPrata, sealOuro } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
 
@@ -130,7 +131,7 @@ function SealBadge({ seal, score }) {
       />
       <p className="leading-none">
         <span className="text-sm font-bold tabular-nums text-primary sm:text-base">{score}</span>
-        <span className="text-[9px] font-medium text-muted sm:text-[10px]">/100</span>
+        <span className="text-xs font-medium text-muted sm:text-sm">/100</span>
       </p>
     </div>
   )
@@ -143,15 +144,15 @@ function TestimonialCard({ item }) {
         <Quote className="h-4 w-4 shrink-0 text-secondary/60 sm:h-5 sm:w-5" aria-hidden />
         <SealBadge seal={item.seal} score={item.score} />
       </div>
-      <p className="mt-2 line-clamp-2 text-[11px] leading-snug text-[#101828] sm:mt-2.5 sm:text-xs sm:leading-relaxed">
+      <p className="mt-2 line-clamp-2 text-sm leading-snug text-[#101828] sm:mt-2.5 sm:text-base sm:leading-relaxed">
         &ldquo;{item.quote}&rdquo;
       </p>
       <footer className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-0 border-t border-border pt-2 sm:mt-2.5 sm:pt-2.5">
-        <p className="text-[10px] font-semibold text-primary sm:text-[11px]">{item.role}</p>
-        <span className="text-[10px] text-border" aria-hidden>
+        <p className="text-xs font-semibold text-primary sm:text-sm">{item.role}</p>
+        <span className="text-xs text-border" aria-hidden>
           ·
         </span>
-        <p className="text-[10px] text-muted sm:text-[11px]">{item.org}</p>
+        <p className="text-xs text-muted sm:text-sm">{item.org}</p>
       </footer>
     </blockquote>
   )
@@ -194,19 +195,17 @@ export default function SocialProof() {
             data-scroll-reveal="text"
             className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
           >
-            <span className="text-[9px] font-semibold uppercase tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-              Confiança
-            </span>
+            <span className={sectionEyebrow}>Confiança</span>
           </div>
           <h2
             data-scroll-reveal="text"
-            className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+            className={sectionTitle}
           >
             Instituições que já deram o primeiro passo
           </h2>
           <p
             data-scroll-reveal="text"
-            className="mx-auto mt-2 max-w-2xl text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed lg:max-w-lg"
+            className={`mx-auto mt-2 max-w-2xl sm:mt-2.5 lg:max-w-lg ${sectionLead}`}
           >
             Diagnósticos ESG objetivos para apoiar decisões, reputação e evolução contínua sem burocracia.
           </p>

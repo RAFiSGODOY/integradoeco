@@ -1,6 +1,12 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { CONTACT_EMAIL } from '../constants/cta'
+import {
+  finePrintOnDark,
+  sectionEyebrowOnDark,
+  sectionLeadOnDark,
+  sectionTitleOnDark,
+} from '../constants/typography'
 import { ctaBackground } from '../assets/images'
 import OptimizedImage from './OptimizedImage'
 
@@ -41,20 +47,18 @@ export default function FinalCTA() {
             data-scroll-reveal="text"
             className="mb-1 inline-flex items-center border-b-2 border-paper px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
           >
-            <span className="text-[9px] font-semibold uppercase tracking-wide text-paper sm:text-[10px] md:text-[11px] lg:text-xs">
-              Avaliação 100% gratuita
-            </span>
+            <span className={sectionEyebrowOnDark}>Avaliação 100% gratuita</span>
           </div>
 
           <h2
             data-scroll-reveal="text"
-            className="text-pretty text-lg font-semibold tracking-tight text-paper sm:text-xl lg:text-2xl"
+            className={sectionTitleOnDark}
           >
             Sua instituição está pronta para evoluir?
           </h2>
           <p
             data-scroll-reveal="text"
-            className="mt-2 text-xs leading-snug text-paper/65 sm:mt-2.5 sm:text-sm sm:leading-relaxed"
+            className={`mt-2 sm:mt-2.5 ${sectionLeadOnDark}`}
           >
           Faça a avaliação e descubra seu nível ESG agora. Após o diagnóstico gratuito, se fizer sentido para sua instituição, nossa equipe pode apoiar planos de
             evolução ESG {' '}
@@ -70,13 +74,13 @@ export default function FinalCTA() {
           <div data-scroll-reveal="cta" className="mt-6 flex w-full justify-center sm:mt-8">
           <a
               href="#finalcta"
-              className=" rounded-tl-full rounded-br-full bg-gray-300 text-gray-600 text-center font-semibold px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base"
+              className="rounded-tl-full rounded-br-full bg-gray-300 text-gray-600 text-center font-semibold px-5 py-2 text-sm md:px-10 md:py-2.5 md:text-base lg:px-20 lg:py-3"
             >
               Disponível em breve
             </a>
           </div>
 
-          <p data-scroll-reveal="text" className="mt-4 text-[10px] text-paper/50 sm:mt-5 sm:text-xs">
+          <p data-scroll-reveal="text" className={`mt-4 sm:mt-5 ${finePrintOnDark}`}>
             100 questões • Resultado instantâneo • Gratuito
           </p>
         </div>

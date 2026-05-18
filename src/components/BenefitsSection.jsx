@@ -1,6 +1,18 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ArrowRight } from 'lucide-react'
+import {
+  btnPrimaryShine,
+  cardBody,
+  cardLabel,
+  cardTitle,
+  ctaBlockTitle,
+  linkSecondary,
+  sectionAsideLabel,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+} from '../constants/typography'
 import '../components/style.css'
 const benefits = [
   {
@@ -32,22 +44,17 @@ function CtaActions({ className }) {
       <div className="pt-4 border-t border-border/70 justify-center items-center lg:justify-start lg:items-start">
         <div className=" flex flex-col items-center justify-center text-center lg:text-left lg:items-start lg:justify-start w-full">
           <div>
-            <p className="text-pretty text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
+            <p className={ctaBlockTitle}>
               Faça a avaliação e descubra seu nível ESG agora. Sem burocracia, sem cadastro longo.
             </p>
 
           </div>
           <div className="mt-4  flex w-full flex-col items-center justify-center gap-3 sm:mt-4 sm:flex-row sm:gap-6 lg:justify-start">
-            <a
-              href="#finalcta"
-              className=" rounded-tl-full btn-shine btn-shine__content rounded-br-full bg-primary text-paper hover:bg-primary-hover transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base">
+            <a href="#finalcta" className={btnPrimaryShine}>
               Iniciar avaliação gratuita
             </a>
 
-            <a
-              href="#resultado"
-              className="group inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary transition-colors hover:text-primary sm:text-[11px] md:text-xs"
-            >
+            <a href="#resultado" className={linkSecondary}>
               Ver exemplo de relatório
               <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} aria-hidden />
             </a>
@@ -64,15 +71,9 @@ function BenefitItem({ benefit }) {
       data-scroll-reveal="item"
       className="group relative border-b border-border/70 py-3 last:border-b-0 sm:py-4"
     >
-      <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-secondary sm:text-[10px]">
-        {benefit.number}
-      </p>
-      <h3 className="mt-1 text-sm font-semibold tracking-tight text-[#101828] sm:text-base">
-        {benefit.title}
-      </h3>
-      <p className="mt-1 text-xs leading-snug text-muted sm:mt-1.5 sm:text-sm sm:leading-relaxed">
-        {benefit.description}
-      </p>
+      <p className={cardLabel}>{benefit.number}</p>
+      <h3 className={`mt-1 ${cardTitle}`}>{benefit.title}</h3>
+      <p className={`mt-1 sm:mt-1.5 ${cardBody}`}>{benefit.description}</p>
       <div
         className="absolute bottom-0 left-0 h-0.5 w-0 bg-secondary transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
         aria-hidden
@@ -102,21 +103,19 @@ export default function BenefitsSection() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Benefícios
-              </span>
+              <span className={sectionEyebrow}>Benefícios</span>
             </div>
 
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Por que fazer o diagnóstico ESG
             </h2>
 
             <p
               data-scroll-reveal="text"
-              className="mt-2 max-w-md text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed md:max-w-lg"
+              className={`mt-2 max-w-md md:max-w-lg sm:mt-2.5 ${sectionLead}`}
             >
               Identifique riscos, fortaleça reputação e decida com dados objetivos sem burocracia e sem custo.
             </p>
@@ -127,7 +126,7 @@ export default function BenefitsSection() {
           <div className="min-w-0">
             <p
               data-scroll-reveal="label"
-              className="mb-3 text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-tertiary sm:mb-4 sm:text-[10px] lg:text-left"
+              className={`mb-3 text-center sm:mb-4 lg:text-left ${sectionAsideLabel}`}
             >
               O que você ganha
             </p>

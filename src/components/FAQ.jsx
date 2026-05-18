@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { ChevronDown } from 'lucide-react'
+import { cardBody, sectionEyebrow, sectionLead, sectionTitle } from '../constants/typography'
 
 const faqItems = [
   {
@@ -52,7 +53,7 @@ function FaqItem({ item, index, isOpen, onSelect }) {
           className="flex w-full items-center justify-between gap-3 py-3 text-left transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 sm:gap-4 sm:py-3.5"
         >
           <span
-            className={`text-xs font-semibold transition-colors duration-200 sm:text-sm ${
+            className={`text-sm font-semibold transition-colors duration-200 sm:text-base ${
               isOpen ? 'text-primary' : 'text-[#101828]'
             }`}
           >
@@ -77,7 +78,7 @@ function FaqItem({ item, index, isOpen, onSelect }) {
       >
         <div className="min-h-0 overflow-hidden">
           <p
-            className={`pb-3 text-xs leading-snug text-muted transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:pb-4 sm:text-sm sm:leading-relaxed ${
+            className={`pb-3 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:pb-4 ${cardBody} ${
               isOpen ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0'
             }`}
           >
@@ -112,13 +113,11 @@ export default function FAQ() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold uppercase tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Perguntas frequentes
-              </span>
+              <span className={sectionEyebrow}>Perguntas frequentes</span>
             </div>
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               Tire suas dúvidas antes de começar
             </h2>
@@ -126,7 +125,7 @@ export default function FAQ() {
 
           <p
             data-scroll-reveal="text"
-            className="min-w-0 max-w-xl text-left text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-md lg:pb-0.5 xl:max-w-lg"
+            className={`min-w-0 max-w-xl text-left lg:max-w-md lg:pb-0.5 xl:max-w-lg ${sectionLead}`}
           >
             Transparência desde o primeiro passo sem surpresas na avaliação gratuita.
           </p>

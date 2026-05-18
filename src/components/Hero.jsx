@@ -33,18 +33,18 @@ export default function Hero() {
         <div className="flex w-full flex-col items-center justify-center gap-4 sm:gap-6 md:gap-10 lg:flex-row lg:gap-14 xl:gap-16">
           <div className="w-full  text-center flex flex-col items-center justify-center md:items-start md:justify-start lg:flex-1 lg:text-left">
             <div className="hero-animate-up hero-delay-1 mb-1 inline-flex items-center border-b-2 border-paper/65 px-0 py-0.5 backdrop-blur-sm sm:mb-1.5 md:mb-3">
-              <span className="text-[9px] font-medium tracking-wide text-paper/95 sm:text-[10px] md:text-[11px] lg:text-xs">
+              <span className="text-xs font-medium tracking-wide text-paper/95 sm:text-sm">
                 Plataforma Inteligente ESG
               </span>
             </div>
 
-            <h1 className="hero-animate-up hero-delay-2 mb-1 max-w-md text-center tracking-tight text-paper sm:mb-1.5 md:mb-2.5 md:text-left lg:mb-4">
-              <span className="text-xl leading-[1.1] sm:text-2xl sm:leading-tight md:text-3xl lg:text-4xl">
+            <h1 className="hero-animate-up hero-delay-2 mb-1 max-w-md text-center tracking-tight text-paper sm:mb-1.5 sm:max-w-lg md:mb-2.5 md:max-w-xl md:text-left lg:mb-4 lg:max-w-2xl">
+              <span className="text-hero-sm md:text-hero-md lg:text-hero">
                 Descubra seu <span className="font-bold">score ESG</span> em minutos
               </span>
             </h1>
 
-            <p className="hero-animate-up hero-delay-3 mb-2 max-w-xs text-pretty text-center text-xs leading-snug text-paper/85 sm:mb-3 sm:max-w-md sm:text-sm sm:leading-relaxed md:mb-3.5 md:text-left lg:mx-0">
+            <p className="hero-animate-up hero-delay-3 mb-2 max-w-sm text-pretty text-center text-sm leading-snug text-paper/85 sm:mb-3 sm:max-w-lg sm:text-base sm:leading-relaxed md:mb-3.5 md:text-left lg:mx-0 lg:max-w-xl lg:text-lg">
               Diagnóstico ESG gratuito, rápido e estruturado para instituições que buscam desempenho, credibilidade e
               sustentabilidade.
             </p>
@@ -52,14 +52,14 @@ export default function Hero() {
             <div className="hero-animate-up hero-delay-4 mb-2 flex w-fit max-w-full flex-col items-center gap-2 sm:mb-3 sm:max-w-md sm:flex-row sm:items-center sm:justify-center sm:gap-2.5 md:mb-4 md:gap-3 lg:mx-0 lg:w-full lg:max-w-none lg:justify-start">
             <a
               href="#finalcta"
-              className=" rounded-tl-full rounded-br-full bg-paper text-primary hover:bg-paper-hover  transition-all duration-300 hover:-translate-y-0.5 text-center  px-5 py-1.5 text-xs  md:px-10 md:py-2.5  md:text-xs  lg:px-20 lg:py-2.5  lg:text-base"
+              className="rounded-tl-full rounded-br-full bg-paper text-primary hover:bg-paper-hover transition-all duration-300 hover:-translate-y-0.5 text-center px-5 py-2 text-sm md:px-10 md:py-2.5 md:text-base lg:px-20 lg:py-3"
             >
               Iniciar avaliação gratuita
             </a>
 
               <a
                 href="#beneficios"
-                className="group inline-flex min-h-9 w-[min(15rem,calc(100vw-2rem))] shrink-0 items-center justify-center gap-1.5 px-2.5 py-1.5 text-center text-[10px] font-semibold leading-snug text-paper transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paper/50 focus:ring-offset-2 focus:ring-offset-black sm:w-auto sm:max-w-none sm:px-4 sm:text-[11px] md:px-5 md:text-xs"
+                className="group inline-flex min-h-10 w-[min(15rem,calc(100vw-2rem))] shrink-0 items-center justify-center gap-1.5 px-2.5 py-2 text-center text-sm font-semibold leading-snug text-paper transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paper/50 focus:ring-offset-2 focus:ring-offset-black sm:w-auto sm:max-w-none sm:px-4 md:px-5 md:text-base"
               >
                 Saiba mais
                 <ArrowRight
@@ -70,7 +70,7 @@ export default function Hero() {
               </a>
             </div>
 
-          <p className="hero-animate-up hero-delay-5 mb-2.5 text-[10px] font-medium tracking-wide text-paper/65 sm:mb-4 sm:text-xs md:mb-5 lg:mb-6">
+          <p className="hero-animate-up hero-delay-5 mb-2.5 text-xs font-medium tracking-wide text-paper/65 sm:mb-4 sm:text-sm md:mb-5 lg:mb-6">
               Rápido • Gratuito • Resultado imediato
             </p>
 
@@ -79,7 +79,7 @@ export default function Hero() {
                 <p className="text-sm font-bold tabular-nums text-paper sm:text-base md:text-lg">
                   100+
                 </p>
-                <p className="text-[10px] font-medium text-paper/75 sm:text-xs">
+                <p className="text-xs font-medium text-paper/75 sm:text-sm">
                   Questões
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function Hero() {
                 <p className="text-sm font-bold tabular-nums text-paper sm:text-base md:text-lg">
                   30min
                 </p>
-                <p className="text-[10px] font-medium text-paper/75 sm:text-xs">
+                <p className="text-xs font-medium text-paper/75 sm:text-sm">
                   Tempo médio
                 </p>
               </div>
@@ -101,7 +101,7 @@ export default function Hero() {
                 <p className="text-sm font-bold tabular-nums text-paper sm:text-base md:text-lg">
                   100%
                 </p>
-                <p className="text-[10px] font-medium text-paper/75 sm:text-xs">
+                <p className="text-xs font-medium text-paper/75 sm:text-sm">
                   Gratuito
                 </p>
               </div>

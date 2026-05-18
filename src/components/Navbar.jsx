@@ -7,6 +7,13 @@ import {
 } from 'react'
 import { Menu, X } from 'lucide-react'
 import { logoNavHero, logoNavLight } from '../assets/images'
+import {
+  navCtaDesktop,
+  navLinkBase,
+  navLinkRow,
+  navMobileCta,
+  navMobileLink,
+} from '../constants/typography'
 import OptimizedImage from './OptimizedImage'
 
 const navLinks = [
@@ -73,17 +80,14 @@ const navbarThemes = {
 }
 
 function HoverNavLink({ href, label, link }) {
-  const rowClass =
-    'flex h-4 shrink-0 items-center whitespace-nowrap leading-none text-[10px] font-medium sm:text-[11px] md:text-xs'
-
   return (
     <a
       href={href}
-      className={`group relative inline-block h-4 overflow-hidden rounded-sm align-middle text-[10px] font-medium leading-none focus-visible:outline-none focus-visible:ring-2 sm:text-[11px] md:text-xs ${link.ring}`}
+      className={`${navLinkBase} ${link.ring}`}
     >
-      <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:-translate-y-4 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
-        <span className={`${rowClass} ${link.idle}`}>{label}</span>
-        <span className={`${rowClass} ${link.hoverLine}`} aria-hidden="true">
+      <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:-translate-y-5 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
+        <span className={`${navLinkRow} ${link.idle}`}>{label}</span>
+        <span className={`${navLinkRow} ${link.hoverLine}`} aria-hidden="true">
           {label}
         </span>
       </span>
@@ -217,7 +221,7 @@ export default function Navbar() {
             <div className="hero-animate-nav hero-delay-3 flex shrink-0 items-center gap-1.5 sm:gap-2">
               <a
                 href="#finalcta"
-                className={`hidden min-h-8 items-center whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold tracking-tight transition-[background-color,border-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/50 focus-visible:ring-offset-0 md:inline-flex md:min-h-9 md:px-2.5 md:text-[11px] lg:rounded-lg lg:px-3 lg:text-xs ${navCtaClass}`}
+                className={`${navCtaDesktop} ${navCtaClass}`}
               >
                 Iniciar avaliação
               </a>
@@ -259,7 +263,7 @@ export default function Navbar() {
                     href={item.href}
                     onClick={closeMenu}
                     tabIndex={menuOpen ? undefined : -1}
-                    className={`rounded-lg px-2 py-1.5 text-[10px] font-medium leading-snug transition-colors motion-reduce:transition-none sm:px-2.5 sm:py-2 sm:text-[11px] ${mobileRow}`}
+                    className={`${navMobileLink} ${mobileRow}`}
                   >
                     {item.label}
                   </a>
@@ -268,7 +272,7 @@ export default function Navbar() {
                   href="#finalcta"
                   onClick={closeMenu}
                   tabIndex={menuOpen ? undefined : -1}
-                  className={`mt-2 flex min-h-9 w-full shrink-0 items-center justify-center rounded-xl px-3 py-1.5 text-[10px] font-semibold tracking-tight transition-[background-color,border-color,color] duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 sm:mt-2.5 sm:text-[11px] ${mobileCtaFocus} ${navCtaClass}`}
+                  className={`${navMobileCta} ${mobileCtaFocus} ${navCtaClass}`}
                 >
                   Iniciar avaliação
                 </a>

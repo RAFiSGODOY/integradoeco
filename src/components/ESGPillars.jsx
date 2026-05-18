@@ -1,6 +1,15 @@
 import { useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { pillarAmbiental, pillarSocial, pillarGovernanca } from '../assets/images'
+import {
+  cardBody,
+  cardLabel,
+  pillarTitle,
+  sectionEyebrow,
+  sectionLead,
+  sectionTitle,
+  tagPill,
+} from '../constants/typography'
 import OptimizedImage from './OptimizedImage'
 
 const pillars = [
@@ -56,24 +65,17 @@ function PillarImage({ pillar }) {
 function PillarContent({ pillar }) {
   return (
     <div className="flex min-w-0 flex-col items-center justify-center lg:items-start lg:justify-start text-center lg:text-left">
-      <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-secondary sm:text-[10px]">
+      <p className={cardLabel}>
         Pilar {pillar.number} · {pillar.labelEn}
       </p>
-      <h3
-        id={`pillar-title-${pillar.id}`}
-        className="mt-1 text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl"
-      >
+      <h3 id={`pillar-title-${pillar.id}`} className={pillarTitle}>
         {pillar.label}
       </h3>
-      <p className="mt-2 max-w-lg text-xs leading-snug text-muted sm:mt-2.5 sm:text-sm sm:leading-relaxed">
-        {pillar.description}
-      </p>
+      <p className={`mt-2 max-w-lg sm:mt-2.5 ${cardBody}`}>{pillar.description}</p>
       <ul className="mt-3 flex flex-wrap justify-center gap-1.5 sm:mt-4 sm:gap-2 lg:justify-start">
         {pillar.tags.map((tag) => (
           <li key={tag}>
-            <span className="inline-block rounded-md bg-secondary/90 px-2 py-0.5 text-[9px] font-medium text-paper sm:px-2.5 sm:py-1 sm:text-[10px]">
-              {tag}
-            </span>
+            <span className={tagPill}>{tag}</span>
           </li>
         ))}
       </ul>
@@ -120,13 +122,11 @@ export default function ESGPillars() {
               data-scroll-reveal="text"
               className="mb-1 inline-flex items-center border-b-2 border-secondary px-1 py-0.5 sm:mb-1.5 sm:px-2 sm:py-0.5 md:mb-2"
             >
-              <span className="text-[9px] font-semibold tracking-wide text-secondary sm:text-[10px] md:text-[11px] lg:text-xs">
-                Pilares ESG
-              </span>
+              <span className={sectionEyebrow}>Pilares ESG</span>
             </div>
             <h2
               data-scroll-reveal="text"
-              className="text-pretty text-lg font-semibold tracking-tight text-[#101828] sm:text-xl lg:text-2xl"
+              className={sectionTitle}
             >
               O que medimos em cada pilar
             </h2>
@@ -134,7 +134,7 @@ export default function ESGPillars() {
 
           <p
             data-scroll-reveal="text"
-            className="min-w-0 text-center text-xs leading-snug text-muted sm:text-sm sm:leading-relaxed lg:max-w-sm lg:pb-0.5 lg:text-left"
+            className={`min-w-0 text-center lg:max-w-sm lg:pb-0.5 lg:text-left ${sectionLead}`}
           >
             Critérios objetivos e padronizados para uma avaliação consistente e transparente.
           </p>
